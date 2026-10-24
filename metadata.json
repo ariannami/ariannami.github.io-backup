@@ -1,0 +1,6 @@
+{
+  "name": "Arian Nami — Industrial Design & 3D Visualization Portfolio",
+  "description": "Minimalist interactive hover-list portfolio homepage for Arian Nami, Industrial Designer & 3D Artist, with English and Persian (RTL) support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

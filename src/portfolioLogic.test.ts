@@ -1,0 +1,46 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  MENU_ITEMS,
+  SOCIAL_ITEMS,
+  PROJECT_DETAILS,
+  getProjectById,
+} from "../script.js";
+
+test("StaggeredMenu configuration includes 5 numbered items and 3 social items", () => {
+  assert.equal(MENU_ITEMS.length, 5);
+  assert.deepEqual(
+    MENU_ITEMS.map((item) => item.number),
+    ["01", "02", "03", "04", "05"]
+  );
+  assert.deepEqual(
+    MENU_ITEMS.map((item) => item.label),
+    ["Home", "About", "Services", "Projects", "Awards"]
+  );
+  const aboutItem = MENU_ITEMS.find((item) => item.id === "about");
+  assert.equal(aboutItem?.link, "./about.html");
+  const projectsItem = MENU_ITEMS.find((item) => item.id === "projects");
+  assert.equal(projectsItem?.link, "./projects.html");
+  assert.equal(SOCIAL_ITEMS.length, 3);
+  assert.deepEqual(
+    SOCIAL_ITEMS.map((s) => s.label),
+    ["LinkedIn", "Instagram", "Behance"]
+  );
+});
+
+test("project registry maps all portfolio projects to English titles and render assets", () => {
+  assert.equal(
+    getProjectById("agri").image,
+    "/assets/aistudio/Untitled1_da706d99.jpg"
+  );
+  assert.equal(getProjectById("agri").title, "AGRIVISION");
+  assert.equal(getProjectById("agri").link, "./agrivision.html");
+
+  const expectedIds = ["agri", "wheelchair", "rfid", "survival"];
+  for (const id of expectedIds) {
+    const project = getProjectById(id);
+    assert.equal(project.id, id);
+    assert.ok(PROJECT_DETAILS[id].title.length > 0);
+    assert.ok(project.image.startsWith("/"));
+  }
+});
