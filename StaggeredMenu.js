@@ -16,8 +16,8 @@ export default class StaggeredMenu {
      * @param {string} [options.menuButtonColor='#ffffff']
      * @param {string} [options.openMenuButtonColor='#ffffff']
      * @param {boolean} [options.changeMenuColorOnOpen=true]
-     * @param {string[]} [options.colors=['#FF9900', '#1F1F24']]
-     * @param {string} [options.accentColor='#FF9900']
+     * @param {string[]} [options.colors=['#7f072b', '#1F1F24']]
+     * @param {string} [options.accentColor='#7f072b']
      * @param {() => void} [options.onMenuOpen]
      * @param {() => void} [options.onMenuClose]
      * @param {(item: {label: string, link: string, id?: string}, event: MouseEvent) => void} [options.onItemClick]
@@ -33,7 +33,7 @@ export default class StaggeredMenu {
                 ? options.displayItemNumbering
                 : true;
         this.menuButtonColor = options.menuButtonColor || "#ffffff";
-        this.openMenuButtonColor = options.openMenuButtonColor || "#FF9900";
+        this.openMenuButtonColor = options.openMenuButtonColor || "#7f072b";
         this.changeMenuColorOnOpen =
             options.changeMenuColorOnOpen !== undefined
                 ? options.changeMenuColorOnOpen
@@ -41,8 +41,8 @@ export default class StaggeredMenu {
         this.colors =
             Array.isArray(options.colors) && options.colors.length
                 ? options.colors.slice(0, 4)
-                : ["#FF9900", "#1F1F24"];
-        this.accentColor = options.accentColor || "#FF9900";
+                : ["#7f072b", "#1F1F24"];
+        this.accentColor = options.accentColor || "#7f072b";
         this.onMenuOpen = options.onMenuOpen || (() => {});
         this.onMenuClose = options.onMenuClose || (() => {});
         this.onItemClick = options.onItemClick || null;
@@ -172,6 +172,7 @@ export default class StaggeredMenu {
                 ".sm-panel-list[data-numbering] .sm-panel-item"
             )
         );
+        const emailBlock = this.panel.querySelector(".sm-email-block");
         const socialTitle = this.panel.querySelector(".sm-socials-title");
         const socialLinks = Array.from(
             this.panel.querySelectorAll(".sm-socials-link")
@@ -188,6 +189,9 @@ export default class StaggeredMenu {
         }
         if (numberEls.length) {
             gsap.set(numberEls, { "--sm-num-opacity": 0 });
+        }
+        if (emailBlock) {
+            gsap.set(emailBlock, { y: 16, opacity: 0, force3D: true });
         }
         if (socialTitle) {
             gsap.set(socialTitle, { opacity: 0 });
@@ -265,8 +269,21 @@ export default class StaggeredMenu {
             }
         }
 
-        if (socialTitle || socialLinks.length) {
+        if (emailBlock || socialTitle || socialLinks.length) {
             const socialsStart = panelInsertTime + panelDuration * 0.4;
+            if (emailBlock) {
+                tl.to(
+                    emailBlock,
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                        force3D: true,
+                    },
+                    socialsStart - 0.04
+                );
+            }
             if (socialTitle) {
                 tl.to(
                     socialTitle,

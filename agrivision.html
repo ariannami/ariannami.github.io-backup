@@ -8,8 +8,12 @@
     <meta name="description" content="Product visualization, hard-surface modeling, and CGI for brands and studios worldwide.">
     <meta property="og:title" content="Atelier Unit — 3D Artist turned Industrial Designer">
     <meta property="og:description" content="Product visualization, hard-surface modeling, and CGI for brands and studios worldwide.">
-    <link rel="preload" as="image" href="assets/aistudio/Untitled1_da706d99.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/aistudio/Untitled1_da706d99.jpg" fetchpriority="high">
     <link rel="stylesheet" href="/agrivision.css">
+    <script>
+      self.ModelViewerElement = self.ModelViewerElement || {};
+      self.ModelViewerElement.meshoptDecoderLocation = "https://cdn.jsdelivr.net/npm/meshoptimizer@0.20.0/meshopt_decoder.js";
+    </script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
     <script src="/assets/agrivision.js" defer></script>
   </head>
@@ -38,25 +42,16 @@
 
     <div class="hero">
       <div class="hero__photo" role="presentation">
-        <img src="assets/aistudio/Untitled1_da706d99.jpg" srcset="assets/aistudio/Untitled1_da706d99.jpg 3072w" sizes="100vw" alt="" width="3072" height="1920" fetchpriority="high" decoding="async">
+        <img src="/assets/aistudio/Untitled1_da706d99.jpg" srcset="/assets/aistudio/Untitled1_da706d99.jpg 3072w" sizes="100vw" alt="" width="3072" height="1920" fetchpriority="high" decoding="async">
       </div>
 
       <div class="grid" aria-hidden="true">
         <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
 
-      <a href="index.html" class="logo small" aria-label="Back to Main Portfolio — 2026">
-        <span style="--ls: -0.035em; --soft-delay: 0.70s;">← 2026</span>
-      </a>
-
       <p class="tagline small">
-        <span style="--ls: -0.035em; --soft-delay: 0.78s; font-size: 39.269999999999996px; font-weight: bold; font-style: normal; text-decoration-line: none;">The Agri Vision Ecosystem</span>
+        <span class="tagline__main" style="--ls: -0.035em; --soft-delay: 0.78s;">The Agri Vision Ecosystem</span>
       </p>
-
-      <div class="actions">
-        <button class="lang" type="button" aria-label="Language: English" style="--soft-delay: 0.98s;">EN</button>
-        <button class="menu" type="button" aria-expanded="false"><span>Menu</span></button>
-      </div>
 
       <h1 class="hl" aria-label="The future of farming from above">
         <span class="hl__line">
@@ -69,6 +64,152 @@
       <a href="#case-study" class="hero__scroll-cue" aria-label="Scroll to Case Studies">
         <span>Explore Work</span> ↓
       </a>
+    </div>
+
+    <!-- Top Navigation Bar (above StaggeredMenu stacking context so Menu/Close toggle is always accessible) -->
+    <header class="hero-topbar">
+      <a href="./projects.html" class="logo small back-btn" id="agrivision-back-btn" aria-label="Back to Projects">
+        <span style="--ls: -0.02em; --soft-delay: 0.70s;">← Back</span>
+      </a>
+
+      <div class="actions">
+        <button
+          type="button"
+          id="menu-toggle"
+          class="menu-btn sm-toggle"
+          aria-expanded="false"
+          aria-controls="staggered-menu-panel"
+          aria-label="Open menu"
+        >
+          <span class="sm-toggle-textWrap" aria-hidden="true">
+            <span class="sm-toggle-textInner" id="sm-toggle-textInner">
+              <span class="sm-toggle-line">Menu</span>
+              <span class="sm-toggle-line">Close</span>
+            </span>
+          </span>
+          <span class="sm-icon" id="sm-toggle-icon" aria-hidden="true">
+            <span class="sm-icon-line" id="sm-icon-line-h"></span>
+            <span class="sm-icon-line sm-icon-line-v" id="sm-icon-line-v"></span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- StaggeredMenu Fixed Right-Side Drawer System (Original Portfolio Menu) -->
+    <div
+      id="staggered-menu"
+      class="staggered-menu-wrapper"
+      data-position="right"
+      data-open="false"
+      aria-hidden="true"
+    >
+      <div class="sm-backdrop" id="sm-backdrop"></div>
+
+      <div id="sm-prelayers" class="sm-prelayers" aria-hidden="true">
+        <div class="sm-prelayer" style="background: #FF9900;"></div>
+        <div class="sm-prelayer" style="background: #1F1F24;"></div>
+      </div>
+
+      <aside
+        id="staggered-menu-panel"
+        class="staggered-menu-panel"
+        aria-label="Primary Navigation"
+      >
+        <div class="sm-panel-inner">
+          <ul class="sm-panel-list" id="sm-panel-list" role="list" data-numbering="true">
+            <li class="sm-panel-itemWrap">
+              <a
+                href="./index.html"
+                class="sm-panel-item"
+                data-menu-section="home"
+                data-index="1"
+                aria-label="Go to home page"
+              >
+                <span class="sm-panel-itemLabel">Home</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a
+                href="./about.html"
+                class="sm-panel-item"
+                data-menu-section="about"
+                data-index="2"
+                aria-label="Learn about us"
+              >
+                <span class="sm-panel-itemLabel">About</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a
+                href="/services"
+                class="sm-panel-item"
+                data-menu-section="services"
+                data-index="3"
+                aria-label="View our services"
+              >
+                <span class="sm-panel-itemLabel">Services</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a
+                href="./projects.html"
+                class="sm-panel-item"
+                data-menu-section="projects"
+                data-index="4"
+                aria-label="View projects"
+              >
+                <span class="sm-panel-itemLabel">Projects</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a
+                href="./awards.html"
+                class="sm-panel-item"
+                data-menu-section="awards"
+                data-index="5"
+                aria-label="View awards and recognition"
+              >
+                <span class="sm-panel-itemLabel">Awards</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sm-email-block" id="sm-email-block">
+            <span class="sm-email-label">Direct Inquiries</span>
+            <a href="mailto:Arnami.samco@gmail.com" class="sm-email-link">Arnami.samco@gmail.com</a>
+          </div>
+
+          <div class="sm-socials" id="sm-socials" aria-label="Social links">
+            <h3 class="sm-socials-title">Socials</h3>
+            <ul class="sm-socials-list" id="sm-socials-list" role="list">
+              <li class="sm-socials-item">
+                <a
+                  href="https://www.linkedin.com/in/arian-nami-b1209633b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sm-socials-link"
+                >LinkedIn</a>
+              </li>
+              <li class="sm-socials-item">
+                <a
+                  href="https://www.instagram.com/arian.nmi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sm-socials-link"
+                >Instagram</a>
+              </li>
+              <li class="sm-socials-item">
+                <a
+                  href="https://www.behance.net/ariannami"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sm-socials-link"
+                >Behance</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
     </div>
 
     <!-- Second Page / Project Section & Interactive Technical Breakdown -->
@@ -142,14 +283,14 @@
             </svg>
 
             <!-- Base Render Layer -->
-            <img class="media-base drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="AGRIVISION Autonomous Quadcopter Drone Technical 3D Render" loading="lazy" decoding="async" width="3840" height="2400">
+            <img class="media-base drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="AGRIVISION Autonomous Quadcopter Drone Technical 3D Render" loading="eager" decoding="async" width="3840" height="2400">
 
             <!-- Clipped Focus Layers for Each Subsystem -->
-            <img class="media-focus media-focus-battery drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="3840" height="2400">
-            <img class="media-focus media-focus-propeller drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="3840" height="2400">
-            <img class="media-focus media-focus-chassis drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="3840" height="2400">
-            <img class="media-focus media-focus-arms drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="3840" height="2400">
-            <img class="media-focus media-focus-landing-gear drone-layer-img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled2_91082964.jpg" data-srcset="assets/aistudio/Untitled2_91082964.jpg 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="3840" height="2400">
+            <img class="media-focus media-focus-battery drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="3840" height="2400">
+            <img class="media-focus media-focus-propeller drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="3840" height="2400">
+            <img class="media-focus media-focus-chassis drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="3840" height="2400">
+            <img class="media-focus media-focus-arms drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="3840" height="2400">
+            <img class="media-focus media-focus-landing-gear drone-layer-img mobile-img" src="/assets/aistudio/Untitled2_78bbfd05.webp" data-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-front-src="/assets/aistudio/Untitled2_78bbfd05.webp" data-back-src="/assets/aistudio/Untitled3_2bbc8a67.webp" data-srcset="/assets/aistudio/Untitled2_78bbfd05.webp 3840w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="3840" height="2400">
 
             <!-- 1. Battery Hotspot -->
             <button type="button" class="drone-hotspot battery-hotspot" data-part="battery" data-callout-x="50%" data-callout-y="29.8%" data-hover-x="50%" data-hover-y="41.2%" aria-label="Inspect Battery" aria-pressed="false"></button>
@@ -263,22 +404,40 @@
             <div class="project-card__tags">WEBGL 3D · GLTF / GLB READY</div>
           </div>
 
-          <div class="model-viewer-stage">
+          <div class="model-viewer-stage" id="model-viewer-stage">
             <model-viewer
+              id="agrivision-3d-viewer"
               class="agrivision-model-viewer"
-              src="behance1.glb"
-              poster="assets/aistudio/Untitled1_da706d99.jpg"
-              reveal="manual"
+              src="/assets/behance1.glb"
+              poster="/assets/aistudio/Untitled1_da706d99.jpg"
+              reveal="auto"
+              loading="eager"
               alt="Interactive 3D model of the AGRIVISION Autonomous Aerial Unit"
               camera-controls
               auto-rotate
-              shadow-intensity="1"
-              exposure="0.95"
-              touch-action="pan-y"
+              auto-rotate-delay="1200"
+              rotation-per-second="16deg"
+              camera-orbit="35deg 72deg 105%"
+              min-camera-orbit="auto 15deg 65%"
+              max-camera-orbit="auto 92deg 150%"
+              interpolation-decay="60"
+              orbit-sensitivity="0.85"
+              shadow-intensity="0.4"
+              shadow-softness="0.5"
+              minimum-render-scale="0.75"
+              exposure="0.98"
+              touch-action="none"
             ></model-viewer>
             <div class="model-viewer-hud" aria-hidden="true">
               <span class="model-viewer-hud__dot"></span>
-              <span>3D VIEWPORT · DRAG TO ORBIT · SCROLL TO ZOOM</span>
+              <span>3D VIEWPORT · DRAG TO ORBIT · PINCH / SCROLL TO ZOOM</span>
+            </div>
+            <div class="model-viewer-controls" role="group" aria-label="3D Camera Controls">
+              <button type="button" class="model-ctrl-btn is-active" data-orbit="35deg 72deg 105%" aria-label="Isometric camera view">Iso</button>
+              <button type="button" class="model-ctrl-btn" data-orbit="0deg 78deg 105%" aria-label="Front camera view">Front</button>
+              <button type="button" class="model-ctrl-btn" data-orbit="90deg 78deg 105%" aria-label="Side camera view">Side</button>
+              <button type="button" class="model-ctrl-btn" data-orbit="0deg 18deg 115%" aria-label="Top-down camera view">Top</button>
+              <button type="button" class="model-ctrl-btn" id="model-spin-toggle" aria-pressed="true" aria-label="Toggle auto-rotation">Spin: On</button>
             </div>
           </div>
         </article>
@@ -353,38 +512,38 @@
 
             <!-- Base Render Layer (WebP via <picture> with JPEG fallback) -->
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-base mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="AGRIHUB - GROUND station Dual View 3D Render" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-base mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="AGRIHUB - GROUND station Dual View 3D Render" loading="eager" decoding="async" width="1536" height="960">
             </picture>
 
             <!-- Clipped Focus Layers for Each Ground Station Subsystem -->
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-transport mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-transport mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-shelter mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-shelter mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-charging mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-charging mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-processing mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-processing mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-agripad mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-agripad mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-landing mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-landing mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
             <picture>
-              <source data-srcset="assets/aistudio/Untitled10_33ffdca3.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
-              <img class="media-focus media-focus-station-legs mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled11_4308d76d.jpg" data-srcset="assets/aistudio/Untitled11_4308d76d.jpg 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1536" height="960">
+              <source srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" type="image/webp">
+              <img class="media-focus media-focus-station-legs mobile-img" src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-src="/assets/aistudio/Untitled11_eb6b18ee.webp" data-srcset="/assets/aistudio/Untitled11_eb6b18ee.webp 1536w" sizes="(max-width: 860px) 92vw, 90vw" alt="" aria-hidden="true" loading="eager" decoding="async" width="1536" height="960">
             </picture>
 
             <!-- 1. Transport Hotspots -->
@@ -489,19 +648,19 @@
 
           <div class="workflow-visual-track" aria-label="Drone wireframe stage renders">
             <div class="workflow-visual-placeholder">
-              <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled13_fe419f9b.jpg" data-srcset="assets/aistudio/Untitled13_fe419f9b.jpg 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 01: Boundary traced on the AgriPad tablet and grid flight planned" loading="lazy" decoding="async" width="1280" height="720" />
+              <img class="mobile-img" src="/assets/aistudio/Untitled13_e98a8bdc.webp" data-src="/assets/aistudio/Untitled13_e98a8bdc.webp" data-srcset="/assets/aistudio/Untitled13_e98a8bdc.webp 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 01: Boundary traced on the AgriPad tablet and grid flight planned" loading="eager" decoding="async" width="1280" height="720" />
             </div>
             <div class="workflow-visual-placeholder">
-              <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled14_285f0cda.jpg" data-srcset="assets/aistudio/Untitled14_285f0cda.jpg 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 02: Multispectral, thermal, and RGB imagery capture" loading="lazy" decoding="async" width="1280" height="720" />
+              <img class="mobile-img" src="/assets/aistudio/Untitled14_a5d53bd8.webp" data-src="/assets/aistudio/Untitled14_a5d53bd8.webp" data-srcset="/assets/aistudio/Untitled14_a5d53bd8.webp 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 02: Multispectral, thermal, and RGB imagery capture" loading="eager" decoding="async" width="1280" height="720" />
             </div>
             <div class="workflow-visual-placeholder">
-              <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled15_8193f721.jpg" data-srcset="assets/aistudio/Untitled15_8193f721.jpg 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 03: Processing unit scores crop health, moisture, and leak indicators" loading="lazy" decoding="async" width="1280" height="720" />
+              <img class="mobile-img" src="/assets/aistudio/Untitled15_f4aeace0.webp" data-src="/assets/aistudio/Untitled15_f4aeace0.webp" data-srcset="/assets/aistudio/Untitled15_f4aeace0.webp 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 03: Processing unit scores crop health, moisture, and leak indicators" loading="eager" decoding="async" width="1280" height="720" />
             </div>
             <div class="workflow-visual-placeholder">
-              <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled17_743e1887.jpg" data-srcset="assets/aistudio/Untitled17_743e1887.jpg 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 04: Automated irrigation and zone response actuation" loading="lazy" decoding="async" width="1280" height="720" />
+              <img class="mobile-img" src="/assets/aistudio/Untitled17_ac8de663.webp" data-src="/assets/aistudio/Untitled17_ac8de663.webp" data-srcset="/assets/aistudio/Untitled17_ac8de663.webp 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 04: Automated irrigation and zone response actuation" loading="eager" decoding="async" width="1280" height="720" />
             </div>
             <div class="workflow-visual-placeholder">
-              <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled16_39caf701.jpg" data-srcset="assets/aistudio/Untitled16_39caf701.jpg 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 05: Field report sent to the farmer's AgriPad tablet" loading="lazy" decoding="async" width="1280" height="720" />
+              <img class="mobile-img" src="/assets/aistudio/Untitled16_26ee5ba4.webp" data-src="/assets/aistudio/Untitled16_26ee5ba4.webp" data-srcset="/assets/aistudio/Untitled16_26ee5ba4.webp 1280w" sizes="(max-width: 860px) 280px, 18vw" alt="Stage 05: Field report sent to the farmer's AgriPad tablet" loading="eager" decoding="async" width="1280" height="720" />
             </div>
           </div>
 
@@ -563,8 +722,6 @@
           </div>
         </article>
 
-        <div class="station-section-divider"></div>
-
         <!-- SECTION 5: Design & Ergonomics -->
         <article class="project-card station-section-divider" id="ergonomics">
           <div class="section-meta section-meta--sub">
@@ -603,7 +760,7 @@
                 <div class="ergonomics-copy__tag">CHAMFERED MONOCOQUE · SOLAR DEFLECTION GEOMETRY</div>
               </div>
               <div class="macro-placeholder">
-                <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled18_eeac22f0.jpg" data-srcset="assets/aistudio/Untitled18_eeac22f0.jpg 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Design Language and Aerodynamic — sculpted upper shell and chamfered magnesium airframe" loading="lazy" decoding="async" width="1500" height="824" />
+                <img class="mobile-img" src="/assets/aistudio/Untitled18_6cb3dbb6.webp" data-src="/assets/aistudio/Untitled18_6cb3dbb6.webp" data-srcset="/assets/aistudio/Untitled18_6cb3dbb6.webp 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Design Language and Aerodynamic — sculpted upper shell and chamfered magnesium airframe" loading="eager" decoding="async" width="1500" height="824" />
               </div>
             </div>
 
@@ -617,7 +774,7 @@
                 <div class="ergonomics-copy__tag">RGB + 4× MULTISPECTRAL + LWIR · CNC COOLING FINS</div>
               </div>
               <div class="macro-placeholder">
-                <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled20_f86e7c60.jpg" data-srcset="assets/aistudio/Untitled20_f86e7c60.jpg 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Payload &amp; Handling — AgriVision field deployment with ground station and AgriPad tablet" loading="lazy" decoding="async" width="1500" height="824" />
+                <img class="mobile-img" src="/assets/aistudio/Untitled19_bafc3e49.webp" data-src="/assets/aistudio/Untitled19_bafc3e49.webp" data-srcset="/assets/aistudio/Untitled19_bafc3e49.webp 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Payload &amp; Handling — AgriVision field deployment with ground station and AgriPad tablet" loading="eager" decoding="async" width="1500" height="824" />
               </div>
             </div>
 
@@ -631,7 +788,7 @@
                 <div class="ergonomics-copy__tag">HIGH-VISIBILITY TOUCHPOINTS · DAWN &amp; DUSK ERGONOMICS</div>
               </div>
               <div class="macro-placeholder">
-                <img class="mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled21_ffb5fedc.jpg" data-srcset="assets/aistudio/Untitled21_ffb5fedc.jpg 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Human Factors — operator scale reference with open and stowed AgriHub ground stations and safety-orange touchpoints" loading="lazy" decoding="async" width="1500" height="824" />
+                <img class="mobile-img" src="/assets/aistudio/Untitled21_6e423b34.webp" data-src="/assets/aistudio/Untitled21_6e423b34.webp" data-srcset="/assets/aistudio/Untitled21_6e423b34.webp 1500w" sizes="(max-width: 1024px) 92vw, 55vw" alt="Human Factors — operator scale reference with open and stowed AgriHub ground stations and safety-orange touchpoints" loading="eager" decoding="async" width="1500" height="824" />
               </div>
             </div>
           </div>
@@ -659,99 +816,128 @@
               <h2 class="project-card__title">Materiality: The 80/15/5 Rule</h2>
               <div class="project-card__title-rule" aria-hidden="true"></div>
               <p class="project-card__subtitle">Color, Material &amp; Finish Architecture</p>
-              <div class="project-card__tags">Engineered surface hierarchy balancing solar thermal management, impact resilience, and operator visibility</div>
+              <div class="project-card__tags">Color, material, and finish chosen for field durability, thermal control, and instant operator recognition</div>
             </div>
             <div class="project-card__tags">80% MAGNESIUM · 15% POLYMER · 5% TPU</div>
           </div>
 
-          <p class="project-specs-intro">
-            Color, material, and finish chosen for field durability and instant recognition.
-          </p>
+          <div class="cmf-ratio-panel" aria-label="80/15/5 Material Distribution Ratio">
+            <div class="cmf-ratio-bar" aria-hidden="true">
+              <div class="cmf-ratio-segment__fill cmf-ratio-segment__fill--80"></div>
+              <div class="cmf-ratio-segment__fill cmf-ratio-segment__fill--15"></div>
+              <div class="cmf-ratio-segment__fill cmf-ratio-segment__fill--5"></div>
+            </div>
 
-          <div class="cmf-ratio-bar" aria-label="80/15/5 Material Distribution Ratio">
-            <div class="cmf-ratio-segment cmf-ratio-segment--80">
-              <div class="cmf-ratio-segment__fill"></div>
-              <span class="cmf-ratio-segment__caption">80% · Satin Magnesium Alloy (#D9D9D9)</span>
-            </div>
-            <div class="cmf-ratio-segment cmf-ratio-segment--15">
-              <div class="cmf-ratio-segment__fill"></div>
-              <span class="cmf-ratio-segment__caption">15% · Charcoal Polymer (#2A2A2A)</span>
-            </div>
-            <div class="cmf-ratio-segment cmf-ratio-segment--5">
-              <div class="cmf-ratio-segment__fill"></div>
-              <span class="cmf-ratio-segment__caption">5% · Safety TPU (#FF6600)</span>
+            <div class="cmf-ratio-legend">
+              <div class="cmf-ratio-item">
+                <div class="cmf-ratio-item__header">
+                  <span class="cmf-ratio-item__dot cmf-ratio-item__dot--80" aria-hidden="true"></span>
+                  <span class="cmf-ratio-item__pct">80%</span>
+                  <span class="cmf-ratio-item__code">#D9D9D9</span>
+                </div>
+                <span class="cmf-ratio-item__label">Satin Magnesium Alloy</span>
+                <span class="cmf-ratio-item__role">Primary Airframe &amp; Upper Canopy</span>
+              </div>
+
+              <div class="cmf-ratio-item">
+                <div class="cmf-ratio-item__header">
+                  <span class="cmf-ratio-item__dot cmf-ratio-item__dot--15" aria-hidden="true"></span>
+                  <span class="cmf-ratio-item__pct">15%</span>
+                  <span class="cmf-ratio-item__code">#2A2A2A</span>
+                </div>
+                <span class="cmf-ratio-item__label">Charcoal Impact Polymer</span>
+                <span class="cmf-ratio-item__role">Lower Chassis &amp; Ground Contact Zones</span>
+              </div>
+
+              <div class="cmf-ratio-item">
+                <div class="cmf-ratio-item__header">
+                  <span class="cmf-ratio-item__dot cmf-ratio-item__dot--5" aria-hidden="true"></span>
+                  <span class="cmf-ratio-item__pct">5%</span>
+                  <span class="cmf-ratio-item__code">#FF6600</span>
+                </div>
+                <span class="cmf-ratio-item__label">Safety-Orange TPU Elastomer</span>
+                <span class="cmf-ratio-item__role">Human Touchpoints &amp; Latches</span>
+              </div>
             </div>
           </div>
 
           <div class="cmf-grid">
             <div class="cmf-card">
               <div class="cmf-swatch cmf-swatch--magnesium">
-                <span>MAT 01</span>
-                <span>#D9D9D9</span>
+                <span class="cmf-swatch__id">MAT 01 · 80% SHARE</span>
+                <span class="cmf-swatch__code">#D9D9D9</span>
               </div>
-              <h3 class="cmf-card__title">Bead-blasted satin magnesium alloy (#D9D9D9)</h3>
-              <div class="cmf-card__meta">
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Application</span>
-                  <p class="cmf-card__val">Drone upper shell, station hood.</p>
-                </div>
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Rationale</span>
-                  <p class="cmf-card__val">Light and stiff; limits solar heat gain.</p>
+              <div class="cmf-card__body">
+                <h3 class="cmf-card__title">Bead-Blasted Satin Magnesium Alloy</h3>
+                <div class="cmf-card__meta">
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Application</span>
+                    <p class="cmf-card__val">Drone upper shell, station hood.</p>
+                  </div>
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Rationale</span>
+                    <p class="cmf-card__val">Light and stiff; limits solar heat gain during prolonged field operations.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="cmf-card">
               <div class="cmf-swatch cmf-swatch--polymer">
-                <span>MAT 02</span>
-                <span>#2A2A2A</span>
+                <span class="cmf-swatch__id">MAT 02 · 15% SHARE</span>
+                <span class="cmf-swatch__code">#2A2A2A</span>
               </div>
-              <h3 class="cmf-card__title">Stippled high-impact charcoal polymer (#2A2A2A)</h3>
-              <div class="cmf-card__meta">
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Application</span>
-                  <p class="cmf-card__val">Lower station chassis, wheel wells, bumpers.</p>
-                </div>
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Rationale</span>
-                  <p class="cmf-card__val">Absorbs impacts and hides mud.</p>
+              <div class="cmf-card__body">
+                <h3 class="cmf-card__title">Stippled High-Impact Charcoal Polymer</h3>
+                <div class="cmf-card__meta">
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Application</span>
+                    <p class="cmf-card__val">Lower station chassis, wheel wells, bumpers.</p>
+                  </div>
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Rationale</span>
+                    <p class="cmf-card__val">Absorbs stone and terrain impacts while masking soil and mud buildup.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="cmf-card">
               <div class="cmf-swatch cmf-swatch--tpu">
-                <span>MAT 03</span>
-                <span>#FF6600</span>
+                <span class="cmf-swatch__id">MAT 03 · 5% SHARE</span>
+                <span class="cmf-swatch__code">#FF6600</span>
               </div>
-              <h3 class="cmf-card__title">Vulcanized safety-orange TPU elastomer (#FF6600)</h3>
-              <div class="cmf-card__meta">
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Application</span>
-                  <p class="cmf-card__val">Grab handles, cam latches, locks.</p>
-                </div>
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Rationale</span>
-                  <p class="cmf-card__val">Marks human touchpoints in low light and provides wet-grip traction.</p>
+              <div class="cmf-card__body">
+                <h3 class="cmf-card__title">Vulcanized Safety-Orange TPU Elastomer</h3>
+                <div class="cmf-card__meta">
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Application</span>
+                    <p class="cmf-card__val">Grab handles, cam latches, outrigger locks.</p>
+                  </div>
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Rationale</span>
+                    <p class="cmf-card__val">Marks human touchpoints in low light and provides wet-grip traction.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="cmf-card">
               <div class="cmf-swatch cmf-swatch--steel">
-                <span>MAT 04</span>
-                <span>316 SS</span>
+                <span class="cmf-swatch__id">MAT 04 · HARDWARE</span>
+                <span class="cmf-swatch__code">316 SS</span>
               </div>
-              <h3 class="cmf-card__title">Raw brushed 316 stainless steel</h3>
-              <div class="cmf-card__meta">
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Application</span>
-                  <p class="cmf-card__val">Exposed load-bearing hardware.</p>
-                </div>
-                <div class="cmf-card__row">
-                  <span class="cmf-card__key">Rationale</span>
-                  <p class="cmf-card__val">No paint to flake on sliding joints; resists fertilizer corrosion.</p>
+              <div class="cmf-card__body">
+                <h3 class="cmf-card__title">Raw Brushed 316 Stainless Steel</h3>
+                <div class="cmf-card__meta">
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Application</span>
+                    <p class="cmf-card__val">Exposed load-bearing hinges, rails, and fasteners.</p>
+                  </div>
+                  <div class="cmf-card__row">
+                    <span class="cmf-card__key">Rationale</span>
+                    <p class="cmf-card__val">No paint to flake on sliding joints; resists moisture and fertilizer corrosion.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -834,17 +1020,94 @@
             </div>
 
             <div class="specs-split__media">
-              <img class="specs-split__img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled12_a95a67da.png" data-srcset="assets/aistudio/Untitled12_a95a67da.png 4320w" sizes="(max-width: 1024px) 46vw, 20vw" alt="AgriVision Ground Station Technical Blueprint Illustration" loading="lazy" decoding="async" width="4320" height="4320">
-              <img class="specs-split__img mobile-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/aistudio/Untitled10_c7dd0e6a.png" data-srcset="assets/aistudio/Untitled10_c7dd0e6a.png 4320w" sizes="(max-width: 1024px) 46vw, 20vw" alt="AgriVision UAV Technical Blueprint Illustration" loading="lazy" decoding="async" width="4320" height="4320">
+              <img class="specs-split__img mobile-img" src="/assets/aistudio/Untitled29_20197f09.webp" data-src="/assets/aistudio/Untitled29_20197f09.webp" data-srcset="/assets/aistudio/Untitled29_20197f09.webp 1536w" sizes="(max-width: 1024px) 92vw, 40vw" alt="AgriVision UAV and Ground Station Combined Technical Blueprint Illustration" decoding="async">
             </div>
           </div>
         </article>
 
-        <!-- SECTION 8: Gallery -->
+        <!-- SECTION 8: Concept Sketches & Ideation -->
+        <article class="project-card station-section-divider" id="sketches">
+          <div class="section-meta section-meta--sub">
+            <div>
+              <span>Index</span> &nbsp;—&nbsp; <strong>07 / CONCEPT SKETCHES</strong>
+            </div>
+            <div>
+              <span>Phase</span> &nbsp;—&nbsp; <strong>FORM &amp; PROPORTION IDEATION</strong>
+            </div>
+            <div>
+              <span>Focus</span> &nbsp;—&nbsp; <strong>AIRFRAME &amp; GIMBAL STUDIES</strong>
+            </div>
+            <div>
+              <span>Medium</span> &nbsp;—&nbsp; <strong>2D / 3D SKETCH ARCHIVE</strong>
+            </div>
+          </div>
+
+          <div class="project-card__header">
+            <div>
+              <h2 class="project-card__title">Concept Sketches</h2>
+              <div class="project-card__title-rule" aria-hidden="true"></div>
+              <p class="project-card__subtitle">Early Airframe, Optical Gimbal &amp; CMF Colorway Ideation</p>
+            </div>
+            <div class="project-card__tags">03 STUDIES · SKETCH ARCHIVE</div>
+          </div>
+
+          <p class="project-specs-intro">
+            Initial proportion sketches explored folding rotor arm geometry, modular multispectral payload gimbals, and high-visibility agricultural colorway variations.
+          </p>
+
+          <div class="gallery-grid">
+            <!-- Sketch 01: Untitled30.webp — Airframe & Gimbal Orthographic Sketches (4 Cols) -->
+            <figure class="gallery-item gallery-item--small sketch-slot" data-slot="sketch-01" aria-label="Concept Sketch 01 — Quadcopter Airframe &amp; Modular Gimbal Studies">
+              <div class="gallery-item__frame">
+                <picture class="gallery-item__picture">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled30_d30b591b.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled30_d30b591b.webp" alt="Concept Sketch 01 — Quadcopter Airframe &amp; Modular Gimbal Studies" decoding="async">
+                </picture>
+              </div>
+              <figcaption class="gallery-item__caption">
+                <span class="gallery-item__caption-num">01</span>
+                <span class="gallery-item__caption-text">Orthographic airframe proportions &amp; multispectral sensor pod iterations</span>
+                <span class="gallery-item__caption-meta">UAV &amp; PAYLOAD</span>
+              </figcaption>
+            </figure>
+
+            <!-- Sketch 02: Untitled31.webp — Perspective Marker Render (4 Cols) -->
+            <figure class="gallery-item gallery-item--small sketch-slot" data-slot="sketch-02" aria-label="Concept Sketch 02 — Perspective Airframe &amp; Landing Gear Study">
+              <div class="gallery-item__frame">
+                <picture class="gallery-item__picture">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled31_e418006f.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled31_e418006f.webp" alt="Concept Sketch 02 — Perspective Airframe &amp; Landing Gear Study" decoding="async">
+                </picture>
+              </div>
+              <figcaption class="gallery-item__caption">
+                <span class="gallery-item__caption-num">02</span>
+                <span class="gallery-item__caption-text">Faceted upper monocoque shell, folding carbon booms &amp; tubular skid struts</span>
+                <span class="gallery-item__caption-meta">FORM STUDY</span>
+              </figcaption>
+            </figure>
+
+            <!-- Sketch 03: Untitled32.webp — 4-Up CMF Colorway Study (4 Cols) -->
+            <figure class="gallery-item gallery-item--small sketch-slot" data-slot="sketch-03" aria-label="Concept Sketch 03 — Four-Way Canopy CMF Colorway Exploration">
+              <div class="gallery-item__frame">
+                <picture class="gallery-item__picture">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled32_e0e55b41.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled32_e0e55b41.webp" alt="Concept Sketch 03 — Four-Way Canopy CMF Colorway Exploration" decoding="async">
+                </picture>
+              </div>
+              <figcaption class="gallery-item__caption">
+                <span class="gallery-item__caption-num">03</span>
+                <span class="gallery-item__caption-text">Upper shell finish studies across matte white, agronomy green, terracotta &amp; carbon</span>
+                <span class="gallery-item__caption-meta">CMF VARIATIONS</span>
+              </figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- SECTION 9: Gallery -->
         <article class="project-card station-section-divider" id="gallery">
           <div class="section-meta section-meta--sub">
             <div>
-              <span>Index</span> &nbsp;—&nbsp; <strong>07 / GALLERY</strong>
+              <span>Index</span> &nbsp;—&nbsp; <strong>08 / GALLERY</strong>
             </div>
             <div>
               <span>Format</span> &nbsp;—&nbsp; <strong>WEBP &amp; HIGH-RES STILLS</strong>
@@ -871,272 +1134,90 @@
             <figure class="gallery-item gallery-item--wide" data-slot="01">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <!-- Replace data-srcset / srcset with your .webp file path -->
-                  <source type="image/webp" srcset="">
-                  <!-- Replace src / data-src with your fallback image (.jpg / .png / .webp) -->
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 01 — Full-Width Panoramic Render" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled12.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled12.webp" alt="Gallery Plate 01 — Full-Width Panoramic Render" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 01 // WIDEST</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 21:9 FULL SPAN</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Panoramic Hero Render Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path in &lt;source&gt; / &lt;img&gt;</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 12 / 12 COLS</span>
-                    <span>RES: 3840 × 1640 PX</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">01</span>
-                <span class="gallery-item__caption-text">Full-field deployment panorama — AgriVision UAV and mobile base station</span>
-                <span class="gallery-item__caption-meta">WIDE PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 02: Large Asymmetric Plate (8 Cols) -->
             <figure class="gallery-item gallery-item--large" data-slot="02">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 02 — Primary Feature Study" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/2560.1600_ca7078c6.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/2560.1600_ca7078c6.webp" alt="Gallery Plate 02 — Primary Feature Study" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 02 // LARGE</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 16:10</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Wide Feature Render Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path in &lt;source&gt; / &lt;img&gt;</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 08 / 12 COLS</span>
-                    <span>RES: 2560 × 1600 PX</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">02</span>
-                <span class="gallery-item__caption-text">Three-quarter studio lighting study — airframe &amp; folded solar canopy</span>
-                <span class="gallery-item__caption-meta">LARGE PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 03: Smaller Companion Plate (4 Cols) -->
             <figure class="gallery-item gallery-item--small" data-slot="03">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 03 — Detail Macro" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/3_4_22edf1ff.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/3_4_22edf1ff.webp" alt="Gallery Plate 03 — Detail Macro" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 03 // SMALL</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 4:5</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Compact Detail Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 04 / 12 COLS</span>
-                    <span>DETAIL CROP</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">03</span>
-                <span class="gallery-item__caption-text">Optical gimbal &amp; multispectral sensor array close-up</span>
-                <span class="gallery-item__caption-meta">SMALL PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 04: Smaller Trio Left (4 Cols) -->
             <figure class="gallery-item gallery-item--small" data-slot="04">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 04 — Component Study" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/4psd_3e2438d1.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/4psd_3e2438d1.webp" alt="Gallery Plate 04 — Component Study" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 04 // SMALL</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 4:3</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Small Component Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 04 / 12 COLS</span>
-                    <span>MACRO STUDY</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">04</span>
-                <span class="gallery-item__caption-text">Blind-mate battery swap latch &amp; 316 stainless hinge</span>
-                <span class="gallery-item__caption-meta">SMALL PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 05: Smaller Trio Center (4 Cols) -->
             <figure class="gallery-item gallery-item--small" data-slot="05">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 05 — AgriPad Interface" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/5psd_b7632860.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/5psd_b7632860.webp" alt="Gallery Plate 05 — AgriPad Interface" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 05 // SMALL</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 4:3</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Small Component Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 04 / 12 COLS</span>
-                    <span>INTERFACE</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">05</span>
-                <span class="gallery-item__caption-text">AgriPad rugged controller docked in ground station bay</span>
-                <span class="gallery-item__caption-meta">SMALL PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 06: Smaller Trio Right (4 Cols) -->
             <figure class="gallery-item gallery-item--small" data-slot="06">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 06 — Surface Finish" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/6psd_cb2a3f30.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/6psd_cb2a3f30.webp" alt="Gallery Plate 06 — Surface Finish" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 06 // SMALL</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 4:3</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Small Component Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 04 / 12 COLS</span>
-                    <span>CMF DETAIL</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">06</span>
-                <span class="gallery-item__caption-text">High-visibility signal amber wingtip &amp; carbon weave finish</span>
-                <span class="gallery-item__caption-meta">SMALL PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 07: Medium Dual Split Left (6 Cols) -->
             <figure class="gallery-item gallery-item--medium" data-slot="07">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 07 — Transport Configuration" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled-1_c00f65fd.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled-1_c00f65fd.webp" alt="Gallery Plate 07 — Transport Configuration" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 07 // MEDIUM</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 16:9</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Half-Width Plate Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path in &lt;source&gt; / &lt;img&gt;</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 06 / 12 COLS</span>
-                    <span>STOWED STATE</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">07</span>
-                <span class="gallery-item__caption-text">Closed IP67 transport configuration on all-terrain wheel assembly</span>
-                <span class="gallery-item__caption-meta">MEDIUM PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 08: Medium Dual Split Right (6 Cols) -->
             <figure class="gallery-item gallery-item--medium" data-slot="08">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 08 — Autonomous Docking" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled-2_1eaa3170.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled-2_1eaa3170.webp" alt="Gallery Plate 08 — Autonomous Docking" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 08 // MEDIUM</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 16:9</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Half-Width Plate Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path in &lt;source&gt; / &lt;img&gt;</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 06 / 12 COLS</span>
-                    <span>ACTIVE DOCK</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">08</span>
-                <span class="gallery-item__caption-text">Precision RTK optical landing deck during automated sortie recovery</span>
-                <span class="gallery-item__caption-meta">MEDIUM PLATE</span>
-              </figcaption>
             </figure>
 
             <!-- 09: Widest Closing Plate (12 Cols) -->
             <figure class="gallery-item gallery-item--wide" data-slot="09">
               <div class="gallery-item__frame">
                 <picture class="gallery-item__picture">
-                  <source type="image/webp" srcset="">
-                  <img class="gallery-item__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Gallery Plate 09 — Closing Wide Study" loading="lazy" decoding="async">
+                  <source type="image/webp" srcset="/assets/aistudio/Untitled22_1ef4ac96.webp">
+                  <img class="gallery-item__img" src="/assets/aistudio/Untitled22_1ef4ac96.webp" alt="Gallery Plate 09 — Closing Wide Study" loading="eager" decoding="async">
                 </picture>
-                <div class="gallery-item__placeholder" aria-hidden="true">
-                  <div class="gallery-item__placeholder-top">
-                    <span class="gallery-item__slot-id">PLATE 09 // WIDEST</span>
-                    <span class="gallery-item__format-badge">WEBP / IMG · 21:9 FULL SPAN</span>
-                  </div>
-                  <div class="gallery-item__placeholder-center">
-                    <span class="gallery-item__crosshair">+</span>
-                    <p class="gallery-item__placeholder-title">Panoramic Closing Render Placeholder</p>
-                    <span class="gallery-item__placeholder-hint">Drop .webp or image path in &lt;source&gt; / &lt;img&gt;</span>
-                  </div>
-                  <div class="gallery-item__placeholder-bottom">
-                    <span>SPAN: 12 / 12 COLS</span>
-                    <span>RES: 3840 × 1640 PX</span>
-                  </div>
-                </div>
               </div>
-              <figcaption class="gallery-item__caption">
-                <span class="gallery-item__caption-num">09</span>
-                <span class="gallery-item__caption-text">Low-angle dusk silhouette — autonomous field perimeter sweep</span>
-                <span class="gallery-item__caption-meta">WIDE PLATE</span>
-              </figcaption>
             </figure>
           </div>
         </article>
@@ -1148,9 +1229,58 @@
           <span>© 2026 Atelier Unit</span> &nbsp;—&nbsp; <span>AGRIVISION Ecosystem</span>
         </div>
         <div>
-          <a href="index.html" aria-label="Back to Main Portfolio">← Main Portfolio</a> &nbsp;·&nbsp; <a href="#" aria-label="Back to Top">Back to Top ↑</a>
+          <a href="./projects.html" aria-label="Back to Projects">← Back to Projects</a> &nbsp;·&nbsp; <a href="./index.html" aria-label="Back to Main Portfolio">← Main Portfolio</a> &nbsp;·&nbsp; <a href="#" aria-label="Back to Top">Back to Top ↑</a>
         </div>
       </footer>
     </section>
+
+    <!-- Studio Section Quick-View Dialog (for Services in Menu) -->
+    <dialog id="project-dialog" class="project-dialog" aria-labelledby="dialog-project-title">
+      <div class="dialog-content">
+        <div class="dialog-top">
+          <span id="dialog-project-category" class="category">Capabilities &amp; Disciplines</span>
+          <button type="button" id="dialog-close" class="menu-btn">← Back</button>
+        </div>
+        <h2 id="dialog-project-title" class="dialog-title">Services</h2>
+        <div id="dialog-services-grid" class="services-dialog-grid">
+          <article class="service-card">
+            <div class="service-card__media">
+              <img src="/assets/aistudio/Untitled2_78bbfd05.webp" alt="01 / Industrial &amp; Hardware Design — AgriVision Autonomous Drone Render" class="service-card__img" loading="eager">
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">01 / Industrial &amp; Hardware Design</h3>
+              <p class="service-card__desc">I design functional, multi-component product ecosystems engineered for the real world. From agricultural machinery and modular medical equipment to consumer electronics, I bridge the gap between strict physical manufacturing constraints and forward-looking, ergonomic forms.</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-card__media">
+              <img src="/assets/aistudio/61webp_4ad89aa8.webp" alt="02 / Spatial Architecture &amp; Custom Millwork — Dorsa Design Studio Render" class="service-card__img" loading="eager">
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">02 / Spatial Architecture &amp; Custom Millwork</h3>
+              <p class="service-card__desc">Transforming rigid spaces into fluid, collaborative environments. My interior services cover precise architectural surveying, adaptive reuse planning, and the design of bespoke, highly tactical custom furniture and fixtures tailored to a brand’s specific visual identity.</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-card__media">
+              <img src="/assets/aistudio/24webp_47964294.webp" alt="03 / 3D Visualization &amp; CGI — Orthographic Multi-View &amp; Exploded Presentation Render" class="service-card__img" loading="eager">
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">03 / 3D Visualization &amp; CGI</h3>
+              <p class="service-card__desc">Translating raw CAD data into compelling visual narratives. I specialize in high-fidelity photorealistic rendering, cinematic lighting, and the creation of highly detailed orthographic multi-view presentation sheets that communicate exact technical specifications to clients and engineers.</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-card__media">
+              <img src="/assets/aistudio/28webp_1afcb458.webp" alt="04 / Concept Design &amp; Worldbuilding — Survivalist Tactical Blade &amp; Mechanical Prop Render" class="service-card__img" loading="eager">
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">04 / Concept Design &amp; Worldbuilding</h3>
+              <p class="service-card__desc">When not bound by real-world manufacturing, I sculpt immersive visual identities and functional fiction. This includes designing atmospheric post-apocalyptic character concepts, survivalist equipment, and highly detailed mechanical props for entertainment and digital media.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>

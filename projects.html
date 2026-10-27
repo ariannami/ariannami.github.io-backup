@@ -18,12 +18,13 @@
     <div class="bg-overlay bg-overlay-projects"></div>
 
     <header class="top-header">
-        <a href="./index.html" class="logo" id="brand-logo" aria-label="Arian Nami Home"></a>
+        <div class="header-brand-group">
+            <a href="./index.html" class="logo" id="brand-logo" aria-label="Arian Nami Home"></a>
+            <a href="./index.html" class="header-back-btn" aria-label="Back to Home">← Back</a>
+        </div>
         <p class="description">Arian Nami &nbsp;/&nbsp; Industrial Designer &amp; 3D Artist</p>
         <div class="contact-info">
             <span>Available for freelance</span>
-            <span>&nbsp;/&nbsp;</span>
-            <a href="mailto:hello@ariannami.com" class="contact-link">hello@ariannami.com</a>
         </div>
         <div class="controls">
             <button
@@ -61,7 +62,7 @@
 
         <!-- Staggered Colored Pre-Layers (Always anchored to physical right: 0) -->
         <div id="sm-prelayers" class="sm-prelayers" aria-hidden="true">
-            <div class="sm-prelayer" style="background: #FF9900;"></div>
+            <div class="sm-prelayer" style="background: #7f072b;"></div>
             <div class="sm-prelayer" style="background: #1F1F24;"></div>
         </div>
 
@@ -119,7 +120,7 @@
                     </li>
                     <li class="sm-panel-itemWrap">
                         <a
-                            href="/awards"
+                            href="./awards.html"
                             class="sm-panel-item"
                             data-menu-section="awards"
                             data-index="5"
@@ -130,13 +131,19 @@
                     </li>
                 </ul>
 
+                <!-- Single Email Address Above Socials Divider Line -->
+                <div class="sm-email-block" id="sm-email-block">
+                    <span class="sm-email-label">Direct Inquiries</span>
+                    <a href="mailto:Arnami.samco@gmail.com" class="sm-email-link">Arnami.samco@gmail.com</a>
+                </div>
+
                 <!-- Socials Block -->
                 <div class="sm-socials" id="sm-socials" aria-label="Social links">
                     <h3 class="sm-socials-title">Socials</h3>
                     <ul class="sm-socials-list" id="sm-socials-list" role="list">
                         <li class="sm-socials-item">
                             <a
-                                href="https://linkedin.com"
+                                href="https://www.linkedin.com/in/arian-nami-b1209633b"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -144,7 +151,7 @@
                         </li>
                         <li class="sm-socials-item">
                             <a
-                                href="https://instagram.com"
+                                href="https://www.instagram.com/arian.nmi"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -152,7 +159,7 @@
                         </li>
                         <li class="sm-socials-item">
                             <a
-                                href="https://behance.net"
+                                href="https://www.behance.net/ariannami"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -168,29 +175,34 @@
     <main class="projects-container" id="projects-main">
         <section class="projects-section" aria-labelledby="projects-heading">
             <header class="projects-section-header">
-                <span class="category">Selected Works &nbsp;·&nbsp; 01 — 04</span>
+                <span class="category">Selected Works &nbsp;·&nbsp; 01 — 05</span>
                 <h1 id="projects-heading" class="projects-heading">Projects</h1>
             </header>
 
             <ul class="project-list">
                 <li class="project-item is-active" data-project-key="agri" data-image="/assets/aistudio/Untitled1_da706d99.jpg">
-                    <span class="category">Hardware &amp; Product</span>
+                    <span class="category">autonomous field surveying</span>
                     <a href="./agrivision.html" class="project-name">AGRIVISION</a>
                 </li>
 
-                <li class="project-item" data-project-key="wheelchair" data-image="/renders/ergonomic-wheelchair.svg">
-                    <span class="category">Hardware &amp; Product</span>
-                    <a href="#ergonomic-wheelchair" class="project-name">Ergonomic Wheelchair</a>
+                <li class="project-item" data-project-key="elephant" data-image="/assets/aistudio/Untitled25_c2560062.webp">
+                    <span class="category">EV charging station</span>
+                    <a href="./elephant.html" class="project-name">Elephant</a>
                 </li>
 
-                <li class="project-item" data-project-key="rfid" data-image="/renders/rfid-first-aid-kit.svg">
-                    <span class="category">Industrial Design</span>
-                    <a href="#rfid-first-aid-kit" class="project-name">RFID First Aid Kit</a>
+                <li class="project-item" data-project-key="sarv" data-image="/assets/aistudio/47webp_2033afe0.webp">
+                    <span class="category">Lighting Product</span>
+                    <a href="./sarv.html" class="project-name">Sarv</a>
                 </li>
 
-                <li class="project-item" data-project-key="survival" data-image="/renders/post-apocalyptic-gear.svg">
+                <li class="project-item" data-project-key="interior" data-image="/assets/aistudio/61webp_4ad89aa8.webp">
+                    <span class="category">Spatial &amp; Architectural</span>
+                    <a href="./interior.html" class="project-name">Interior design</a>
+                </li>
+
+                <li class="project-item" data-project-key="gallery" data-image="/assets/aistudio/1_05be8140.webp">
                     <span class="category">Concept Art</span>
-                    <a href="#survival-gear" class="project-name">Survival Gear</a>
+                    <a href="./gallery.html" class="project-name">General 3D gallery</a>
                 </li>
             </ul>
         </section>
@@ -200,12 +212,15 @@
     <dialog id="project-dialog" class="project-dialog" aria-labelledby="dialog-project-title">
         <div class="dialog-content">
             <div class="dialog-top">
-                <span id="dialog-project-category" class="category">Hardware &amp; Product</span>
-                <button type="button" id="dialog-close" class="menu-btn">Close ✕</button>
+                <span id="dialog-project-category" class="category">Capabilities &amp; Disciplines</span>
+                <button type="button" id="dialog-close" class="menu-btn">← Back</button>
             </div>
-            <img id="dialog-project-img" src="/assets/aistudio/Untitled1_da706d99.jpg" alt="Project 3D Studio Render" class="dialog-render" referrerpolicy="no-referrer">
-            <h2 id="dialog-project-title" class="dialog-title">AGRIVISION</h2>
-            <p id="dialog-project-desc" class="dialog-desc">Professional agricultural drone ecosystem featuring an autonomous quadrotor and ruggedized 500W solar-assisted mobile docking station with integrated battery telemetry and field kit storage.</p>
+            <h2 id="dialog-project-title" class="dialog-title">Services</h2>
+            <div id="dialog-single-view" hidden>
+                <img id="dialog-project-img" src="/assets/aistudio/Untitled1_da706d99.jpg" alt="Project 3D Studio Render" class="dialog-render" referrerpolicy="no-referrer">
+                <p id="dialog-project-desc" class="dialog-desc">Professional agricultural drone ecosystem featuring an autonomous quadrotor and ruggedized 500W solar-assisted mobile docking station with integrated battery telemetry and field kit storage.</p>
+            </div>
+            <div id="dialog-services-grid" class="services-dialog-grid"></div>
         </div>
     </dialog>
 

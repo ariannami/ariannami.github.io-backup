@@ -4,13 +4,10 @@
  * interactive subsystem hotspots (Aerial Unit + Ground Station), and view switching.
  */
 (function () {
-  const FALLBACK_RENDER = "assets/aistudio/Untitled1_da706d99.jpg";
-  const AVAILABLE_ASSETS = new Set([
-    "assets/aistudio/Untitled1_da706d99.jpg",
-    "/assets/aistudio/Untitled1_da706d99.jpg",
-    "assets/aistudio/statue_5a8e5ef3.webp",
-    "/assets/aistudio/statue_5a8e5ef3.webp",
-  ]);
+  const DRONE_FRONT_RENDER = "/assets/aistudio/Untitled2_78bbfd05.webp";
+  const DRONE_BACK_RENDER = "/assets/aistudio/Untitled3_2bbc8a67.webp";
+  const GROUND_STATION_RENDER = "/assets/aistudio/Untitled11_eb6b18ee.webp";
+  const FALLBACK_RENDER = "/assets/aistudio/Untitled1_da706d99.jpg";
 
   const PART_METADATA = {
     // Aerial Unit Subsystems
@@ -81,10 +78,11 @@
   function resolveAssetUrl(rawUrl) {
     if (!rawUrl) return FALLBACK_RENDER;
     const trimmed = rawUrl.trim().split(/\s+/)[0];
-    if (AVAILABLE_ASSETS.has(trimmed)) {
-      return trimmed;
+    if (!trimmed || trimmed.startsWith("data:")) return FALLBACK_RENDER;
+    if (trimmed.startsWith("assets/")) {
+      return `/${trimmed}`;
     }
-    return FALLBACK_RENDER;
+    return trimmed;
   }
 
   function initPreloader() {
@@ -104,40 +102,44 @@
     }
   }
 
-  function initLazyImages() {
-    const lazyImages = Array.from(document.querySelectorAll("img.mobile-img"));
-    lazyImages.forEach((img) => {
-      const dataSrc = img.getAttribute("data-src");
-      if (dataSrc) {
-        const resolved = resolveAssetUrl(dataSrc);
-        img.setAttribute("data-original-src", dataSrc);
+  function hydrateImage(img) {
+    if (!img || img.classList.contains("is-hydrated")) return;
+    const dataSrc = img.getAttribute("data-src");
+    if (dataSrc) {
+      const resolved = resolveAssetUrl(dataSrc);
+      img.setAttribute("data-original-src", dataSrc);
+      if (img.getAttribute("src") !== resolved) {
         img.src = resolved;
-        if (img.hasAttribute("data-srcset")) {
-          img.srcset = `${resolved} 1536w`;
-        }
       }
-      img.addEventListener(
-        "error",
-        () => {
-          if (img.src && !img.src.endsWith(FALLBACK_RENDER)) {
-            img.src = FALLBACK_RENDER;
-          }
-        },
-        { once: true }
-      );
-      img.classList.add("is-lazy-loaded");
-    });
+      if (img.hasAttribute("data-srcset")) {
+        img.srcset = `${resolved} 1536w`;
+      }
+    }
+    img.addEventListener(
+      "error",
+      () => {
+        if (img.src && !img.src.endsWith(FALLBACK_RENDER)) {
+          img.src = FALLBACK_RENDER;
+        }
+      },
+      { once: true }
+    );
+    img.classList.add("is-hydrated", "is-lazy-loaded");
+  }
+
+  function initLazyImages() {
+    const lazyImages = Array.from(
+      document.querySelectorAll("img.mobile-img:not(.media-focus)")
+    );
+    lazyImages.forEach(hydrateImage);
 
     const pictureSources = Array.from(
       document.querySelectorAll("picture source[data-srcset]")
     );
     pictureSources.forEach((source) => {
       const rawSrcset = source.getAttribute("data-srcset") || "";
-      const token = rawSrcset.trim().split(/\s+/)[0];
-      if (AVAILABLE_ASSETS.has(token)) {
+      if (rawSrcset) {
         source.setAttribute("srcset", rawSrcset);
-      } else {
-        source.removeAttribute("srcset");
       }
     });
   }
@@ -162,6 +164,21 @@
         hotspots.forEach((btn) => btn.setAttribute("aria-pressed", "false"));
         specItems.forEach((item) => item.classList.remove("is-active"));
         return;
+      }
+
+      // Hydrate only the requested .media-focus layer on demand
+      const focusImg = mediaEl.querySelector(`.media-focus-${partKey}`);
+      if (focusImg) {
+        hydrateImage(focusImg);
+        if (
+          mediaEl.id === "drone-media" &&
+          mediaEl.getAttribute("data-view") === "back"
+        ) {
+          const backSrc =
+            focusImg.getAttribute("data-back-src") || DRONE_BACK_RENDER;
+          focusImg.src = backSrc;
+          focusImg.srcset = `${backSrc} 3840w`;
+        }
       }
 
       const targetHotspot =
@@ -274,12 +291,31 @@
     const rotateBtn = document.getElementById("drone-rotate-btn");
     const viewIndicator = document.getElementById("drone-view-indicator");
 
+    const droneLayers = Array.from(
+      droneMedia.querySelectorAll("img.drone-layer-img")
+    );
+
     function switchView(nextView) {
       const current = droneMedia.getAttribute("data-view") || "front";
       if (current === nextView) return;
 
       droneMedia.classList.add("is-switching-view");
       droneMedia.setAttribute("data-view", nextView);
+
+      droneLayers.forEach((img) => {
+        // Only swap src on the base image and any already-hydrated focus layer
+        if (
+          !img.classList.contains("media-base") &&
+          !img.classList.contains("is-hydrated")
+        ) {
+          return;
+        }
+        const frontSrc = img.getAttribute("data-front-src") || DRONE_FRONT_RENDER;
+        const backSrc = img.getAttribute("data-back-src") || DRONE_BACK_RENDER;
+        const resolvedSrc = nextView === "front" ? frontSrc : backSrc;
+        img.src = resolvedSrc;
+        img.srcset = `${resolvedSrc} 3840w`;
+      });
 
       viewButtons.forEach((btn) => {
         const isTarget = btn.getAttribute("data-view-target") === nextView;
@@ -317,17 +353,158 @@
   }
 
   function initHeroNavigation() {
-    const menuBtn = document.querySelector(".hero .actions .menu");
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        window.location.href = "projects.html";
+    const wrapper = document.getElementById("staggered-menu");
+    const toggleBtn = document.getElementById("menu-toggle");
+    const backdrop = document.getElementById("sm-backdrop");
+    const dialogEl = /** @type {HTMLDialogElement | null} */ (
+      document.getElementById("project-dialog")
+    );
+    const dialogCloseBtn = document.getElementById("dialog-close");
+
+    function setMenuOpen(open) {
+      if (!wrapper || !toggleBtn) return;
+      document.body.setAttribute("data-menu-open", open ? "true" : "false");
+      wrapper.setAttribute("data-open", open ? "true" : "false");
+      wrapper.setAttribute("aria-hidden", open ? "false" : "true");
+      toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      toggleBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    if (toggleBtn && wrapper) {
+      toggleBtn.addEventListener("click", () => {
+        const isOpen = wrapper.getAttribute("data-open") === "true";
+        setMenuOpen(!isOpen);
       });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener("click", () => setMenuOpen(false));
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        wrapper &&
+        wrapper.getAttribute("data-open") === "true"
+      ) {
+        setMenuOpen(false);
+      }
+    });
+
+    if (wrapper) {
+      wrapper.querySelectorAll(".sm-panel-item").forEach((linkEl) => {
+        linkEl.addEventListener("click", (event) => {
+          const section = linkEl.getAttribute("data-menu-section");
+          if (section === "services" && dialogEl) {
+            event.preventDefault();
+            setMenuOpen(false);
+            if (typeof dialogEl.showModal === "function") {
+              dialogEl.showModal();
+            }
+          }
+        });
+      });
+    }
+
+    if (dialogCloseBtn && dialogEl) {
+      dialogCloseBtn.addEventListener("click", () => dialogEl.close());
+      dialogEl.addEventListener("click", (event) => {
+        if (event.target === dialogEl) dialogEl.close();
+      });
+    }
+  }
+
+  function initModelViewer() {
+    const mv = /** @type {any} */ (
+      document.querySelector("model-viewer.agrivision-model-viewer")
+    );
+    if (!mv) return;
+
+    const isMobile = window.matchMedia("(max-width: 860px)").matches;
+    if (isMobile) {
+      mv.setAttribute("shadow-intensity", "0.25");
+      mv.setAttribute("minimum-render-scale", "0.65");
+    }
+
+    const isSoftwareGl = (() => {
+      try {
+        const gl = document.createElement("canvas").getContext("webgl2");
+        if (!gl) return true;
+        const ext = gl.getExtension("WEBGL_debug_renderer_info");
+        const param = ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER;
+        const gpu = String(gl.getParameter(param));
+        gl.getExtension("WEBGL_lose_context")?.loseContext();
+        return /SwiftShader|llvmpipe|softpipe|Software|Basic Render/i.test(gpu);
+      } catch {
+        return false;
+      }
+    })();
+
+    let userSpinEnabled = !isSoftwareGl;
+    const spinToggleBtn = document.getElementById("model-spin-toggle");
+
+    function updateSpinState(enabled) {
+      userSpinEnabled = enabled;
+      if (enabled && !isSoftwareGl) {
+        mv.setAttribute("auto-rotate", "");
+      } else {
+        mv.removeAttribute("auto-rotate");
+      }
+      if (spinToggleBtn) {
+        spinToggleBtn.setAttribute("aria-pressed", enabled ? "true" : "false");
+        spinToggleBtn.textContent = enabled ? "Spin: On" : "Spin: Off";
+      }
+    }
+
+    if (isSoftwareGl) {
+      updateSpinState(false);
+    }
+
+    if (spinToggleBtn) {
+      spinToggleBtn.addEventListener("click", () => {
+        updateSpinState(!userSpinEnabled);
+      });
+    }
+
+    // Camera preset buttons (Iso, Front, Side, Top) for effortless 1-tap mobile & desktop control
+    const orbitButtons = Array.from(
+      document.querySelectorAll(".model-ctrl-btn[data-orbit]")
+    );
+    orbitButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const orbit = btn.getAttribute("data-orbit");
+        if (!orbit) return;
+        mv.cameraOrbit = orbit;
+        mv.cameraTarget = "auto auto auto";
+        if (typeof mv.jumpCameraToGoal === "function" && isSoftwareGl) {
+          mv.jumpCameraToGoal();
+        }
+        orbitButtons.forEach((b) => b.classList.toggle("is-active", b === btn));
+      });
+    });
+
+    // Pause WebGL auto-rotate when the 3D stage is scrolled offscreen to keep mobile scrolling silky smooth
+    if ("IntersectionObserver" in window) {
+      const stageIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              mv.removeAttribute("auto-rotate");
+            } else if (userSpinEnabled && !isSoftwareGl) {
+              mv.setAttribute("auto-rotate", "");
+            }
+          });
+        },
+        { rootMargin: "100px 0px" }
+      );
+      stageIo.observe(mv);
     }
   }
 
   function boot() {
     initPreloader();
     initLazyImages();
+    initModelViewer();
     document
       .querySelectorAll(".project-card")
       .forEach((card) => initInteractiveCard(card));

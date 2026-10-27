@@ -22,8 +22,6 @@
         <p class="description">Arian Nami &nbsp;/&nbsp; Industrial Designer &amp; 3D Artist</p>
         <div class="contact-info">
             <span>Available for freelance</span>
-            <span>&nbsp;/&nbsp;</span>
-            <a href="mailto:hello@ariannami.com" class="contact-link">hello@ariannami.com</a>
         </div>
         <div class="controls">
             <button
@@ -61,7 +59,7 @@
 
         <!-- Staggered Colored Pre-Layers (Always anchored to physical right: 0) -->
         <div id="sm-prelayers" class="sm-prelayers" aria-hidden="true">
-            <div class="sm-prelayer" style="background: #FF9900;"></div>
+            <div class="sm-prelayer" style="background: #7f072b;"></div>
             <div class="sm-prelayer" style="background: #1F1F24;"></div>
         </div>
 
@@ -119,7 +117,7 @@
                     </li>
                     <li class="sm-panel-itemWrap">
                         <a
-                            href="/awards"
+                            href="./awards.html"
                             class="sm-panel-item"
                             data-menu-section="awards"
                             data-index="5"
@@ -130,13 +128,19 @@
                     </li>
                 </ul>
 
+                <!-- Single Email Address Above Socials Divider Line -->
+                <div class="sm-email-block" id="sm-email-block">
+                    <span class="sm-email-label">Direct Inquiries</span>
+                    <a href="mailto:Arnami.samco@gmail.com" class="sm-email-link">Arnami.samco@gmail.com</a>
+                </div>
+
                 <!-- Socials Block -->
                 <div class="sm-socials" id="sm-socials" aria-label="Social links">
                     <h3 class="sm-socials-title" data-i18n="socialsTitle">Socials</h3>
                     <ul class="sm-socials-list" id="sm-socials-list" role="list">
                         <li class="sm-socials-item">
                             <a
-                                href="https://linkedin.com"
+                                href="https://www.linkedin.com/in/arian-nami-b1209633b"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -144,7 +148,7 @@
                         </li>
                         <li class="sm-socials-item">
                             <a
-                                href="https://instagram.com"
+                                href="https://www.instagram.com/arian.nmi"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -152,7 +156,7 @@
                         </li>
                         <li class="sm-socials-item">
                             <a
-                                href="https://behance.net"
+                                href="https://www.behance.net/ariannami"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="sm-socials-link"
@@ -167,7 +171,7 @@
     <main class="index-container" id="index-main">
         <section class="home-hero" aria-labelledby="home-hero-heading">
             <span class="category">Industrial Design &amp; 3D Visualization Studio</span>
-            <h1 id="home-hero-heading" class="home-hero-title">Engineering Form &amp; Atmospheric Hardware.</h1>
+            <h1 id="home-hero-heading" class="home-hero-title">Find what’s screwed up.<br>Fix it slightly.</h1>
             <div class="home-hero-actions">
                 <a href="./projects.html" class="home-cta-primary">View Projects &rarr;</a>
                 <a href="./about.html" class="home-cta-secondary">About Studio</a>
@@ -179,12 +183,15 @@
     <dialog id="project-dialog" class="project-dialog" aria-labelledby="dialog-project-title">
         <div class="dialog-content">
             <div class="dialog-top">
-                <span id="dialog-project-category" class="category">Hardware &amp; Product</span>
-                <button type="button" id="dialog-close" class="menu-btn" data-i18n="close">Close ✕</button>
+                <span id="dialog-project-category" class="category">Capabilities &amp; Disciplines</span>
+                <button type="button" id="dialog-close" class="menu-btn" data-i18n="close">← Back</button>
             </div>
-            <img id="dialog-project-img" src="/assets/aistudio/Untitled1_da706d99.jpg" alt="Project 3D Studio Render" class="dialog-render" referrerpolicy="no-referrer">
-            <h2 id="dialog-project-title" class="dialog-title">AGRIVISION</h2>
-            <p id="dialog-project-desc" class="dialog-desc">Professional agricultural drone ecosystem featuring an autonomous quadrotor and ruggedized 500W solar-assisted mobile docking station with integrated battery telemetry and field kit storage.</p>
+            <h2 id="dialog-project-title" class="dialog-title">Services</h2>
+            <div id="dialog-single-view" hidden>
+                <img id="dialog-project-img" src="/assets/aistudio/Untitled1_da706d99.jpg" alt="Project 3D Studio Render" class="dialog-render" referrerpolicy="no-referrer">
+                <p id="dialog-project-desc" class="dialog-desc">Professional agricultural drone ecosystem featuring an autonomous quadrotor and ruggedized 500W solar-assisted mobile docking station with integrated battery telemetry and field kit storage.</p>
+            </div>
+            <div id="dialog-services-grid" class="services-dialog-grid"></div>
         </div>
     </dialog>
 
